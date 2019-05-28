@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Home Page</title>
+    <!--jQuery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jQuery mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--jQuery validate-->
+    <script src="js/lib/jquery.validate.js"></script>
+    <!--Custom Global jQuery-->
+    <script src="js/ERglobal.js"></script>
+    <!--Custom database-->
+    <script src="js/ERdatabase.js"></script>
+    <!--Custom Data Access Layer-->
+    <script src="js/ERfeedbackDAL.js"></script>
+    <!--Custom Utility Class-->
+    <script src="js/ERutil.js"></script>
+    <!--Custom Controller-->
+    <script src="js/ERfacade.js"></script>
+    <!--jQuery mobile css-->
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css">
+    <!--Custom css-->
+    <link rel="stylesheet" type="text/css" href="css/ERmystyle.css">
+</head>
+<body>
+
+<div id="homePage" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>Fit Fat Fight</h1>
+    </header>
+    <section data-role="content" id="sectionHome">
+        <div class="titleHeader">
+            <h3>Track your food. Change your habits!</h3>
+            <img src="img/logo.png" alt="logo">
+        </div>
+        <div data-role="collapsible-set">
+            <div data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r"
+                 data-expanded-icon="arrow-l">
+                <h3>Daily Calories and more</h3>
+                <label for="homeEnergy">Calories</label>
+                <input type="text" id="homeEnergy" readonly>
+                <label for="homeProtein">Protein</label>
+                <input type="text" id="homeProtein" readonly>
+                <label for="homeCarbohydrates">Carbohydrates</label>
+                <input type="text" id="homeCarbohydrates" readonly>
+                <label for="homeFiber">Fiber</label>
+                <input type="text" id="homeFiber" readonly>
+                <label for="homeSugar">Sugar</label>
+                <input type="text" id="homeSugar" readonly>
+                <label for="homeLipid">Total Lipid</label>
+                <input type="text" id="homeLipid" readonly>
+                <label for="homeWater">Water</label>
+                <input type="text" id="homeWater" readonly>
+                <label for="homeCalcium">Calcium</label>
+                <input type="text" id="homeCalcium" readonly>
+                <label for="homeIron">Iron</label>
+                <input type="text" id="homeIron" readonly>
+                <label for="homeMagnesium">Magnesium</label>
+                <input type="text" id="homeMagnesium" readonly>
+                <label for="homePhosforus">Phosforus</label>
+                <input type="text" id="homePhosforus" readonly>
+            </div>
+            <div data-role="collapsible" data-collapsed="true" data-collapsed-icon="arrow-r"
+                 data-expanded-icon="arrow-l">
+                <h3>Daily foods</h3>
+                <table id="grid-basic-home" class="table table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th data-column-id="sender">Food</th>
+                        <th data-column-id="received" data-order="desc">Weight</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dailyFoodHome">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="#addFood" data-role="button" data-theme="b">Add Food</a>
+        <a href="#aboutPage" data-role="button" data-theme="c">About</a>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a  ui-btn-active ui-state-persist">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<div id="createFood" data-role="page">
+    <header data-role="header" data-theme="b" >
+        <h1>Create New Food</h1>
+    </header>
+    <section data-role="content" id="createFoodSection">
+        <form method="post" id="createNewFood" name="createNewFood">
+
+            <label for="foodName">Name:</label>
+            <input type="text" name="foodName" id="foodName">
+
+            <label for="foodCal">Calories(Kcal):</label>
+            <input type="number" name="foodCal" id="foodCal">
+
+            <label for="foodCarbohydrates">Carbohydrates(g):</label>
+            <input type="number" name="foodCarbohydrates" id="foodCarbohydrates">
+
+            <label for="foodSugar">Sugar(g):</label>
+            <input type="number" name="foodSugar" id="foodSugar">
+
+            <label for="foodWater">Water(g):</label>
+            <input type="number" name="foodWater" id="foodWater">
+
+            <label for="foodProtein">Protein(g):</label>
+            <input type="number" name="foodProtein" id="foodProtein">
+
+            <label for="foodLipid">Total Lipid(g):</label>
+            <input type="number" name="foodLipid" id="foodLipid">
+
+            <label for="foodFiber">Fiber(g):</label>
+            <input type="number" name="foodFiber" id="foodFiber">
+
+            <label for="foodCalcium">Calcium(mg):</label>
+            <input type="number" name="foodCalcium" id="foodCalcium">
+
+            <label for="foodIron">Iron(mg):</label>
+            <input type="number" name="foodIron" id="foodIron">
+
+            <label for="foodMagnesium">Magnesium(mg):</label>
+            <input type="number" name="foodMagnesium" id="foodMagnesium">
+
+            <label for="foodPhosphorus">Phosphorus(mg):</label>
+            <input type="number" name="foodPhosphorus" id="foodPhosphorus">
+
+            <label for="foodPotassium">Potassium(mg):</label>
+            <input type="number" name="foodPotassium" id="foodPotassium">
+
+            <label for="foodSodium">Sodium(mg):</label>
+            <input type="number" name="foodSodium" id="foodSodium">
+
+            <label for="foodZinc">Zinc(mg):</label>
+            <input type="number" name="foodZinc" id="foodZinc">
+
+            <label for="foodCopper">Copper(mg):</label>
+            <input type="number" name="foodCopper" id="foodCopper">
+
+            <label for="foodManganese">Manganese(mg):</label>
+            <input type="number" name="foodManganese" id="foodManganese">
+
+            <label for="foodSelenium">Selenium(mg):</label>
+            <input type="number" name="foodSelenium" id="foodSelenium">
+
+            <label for="foodAsh">Ash(g):</label>
+            <input type="number" name="foodAsh" id="foodAsh">
+
+            <button class="ui-btn-active" type="submit" data-inline="true" id="createBtn">Save</button>
+        </form>
+    </section>
+
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a ">Home</a></li>
+                <li><a href="#createFood" data-icon="home" class="ui-btn-a ui-btn-active ui-state-persist">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+<div id="profile" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>My Profile</h1>
+    </header>
+
+    <section data-role="content" id="profileSection">
+        <form method="post" id="profileFrm">
+
+            <label for="userName">Name:</label>
+            <input type="text" name="userName" id="userName">
+
+            <fieldset data-role="controlgroup" data-type="horizontal" >
+                <input type="radio" name="radioGenre" id="radioGenreMan" value="man" checked/>
+                <label for="radioGenreMan">Man</label>
+                <input type="radio" name="radioGenre" id="radioGenreWoman" value="woman"/>
+                <label for="radioGenreWoman">Woman</label>
+            </fieldset>
+
+            <label for="userWeight">Weight(kg):</label>
+            <input type="text" name="userWeight" id="userWeight">
+
+            <label for="userHeight">Height(m):</label>
+            <input type="text" name="userHeight" id="userHeight">
+
+            <label for="userBMI">BMI index:</label>
+            <input type="text" name="userBMI" id="userBMI" disabled>
+
+            <button class="ui-btn-active" type="submit" data-inline="true" id="profileSaveBtn">Save</button>
+        </form>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a ">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a ui-btn-active ui-state-persist">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<div id="addFood" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>Add Food</h1>
+    </header>
+
+    <section data-role="content" id="addFoodSection">
+        <form method="post" id="addFoodFrm">
+            <label for="addFoodSelect">Food:</label>
+            <select id="addFoodSelect" name="addFoodSelect">
+            </select>
+            <label for="foodWeight">Weight(g):</label>
+            <input type="number" name="foodWeight" id="foodWeight">
+            <button class="ui-btn-active" type="submit" data-inline="true" id="addFoodBtn">Save</button>
+        </form>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a ">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a ui-btn-active ui-state-persist">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<div id="dailyFood" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>Daily Diet</h1>
+    </header>
+
+    <section data-role="content" id="dailyFoodSection">
+        <table  id="grid-basic" data-role="table" data-mode="columntoggle" class=""ui-table-columntoggle-btn">
+        <thead>
+        <tr>
+            <th data-column-id="sender">Weight</th>
+            <th data-column-id="received">Food</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Total Lipid</th>
+            <th>Carbohydrates</th>
+            <th>Fiber</th>
+            <th>Sugar</th>
+            <th>Calcium</th>
+            <th>Iron</th>
+            <th>Magnesium</th>
+            <th>Phosphorus</th>
+        </tr>
+        </thead>
+        <tbody id="dailyFoodTr">
+
+        </tbody>
+        </table>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a ">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a ">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<div id="monthFood" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>Monthly Diet</h1>
+    </header>
+
+    <section data-role="content" id="monthFoodSection">
+        <section data-role="listview" id="monthList" data-inset="true">
+            <h3>Select a day</h3>
+            <ul id="lvViewMonth" data-role="listview" data-inset="true" data-icon="false" class="ui-listview-inset">
+            </ul>
+        </section>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a ">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a">Add Food </a></li>
+                <li><a href="#dailyFood" data-icon="grid" class="ui-btn-a ui-btn-active ui-state-persist">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<div id="aboutPage" data-role="page">
+    <header data-role="header" data-theme="b" data-position="fixed">
+        <h1>Fit Fat Fight</h1>
+    </header>
+    <section data-role="content" id="aboutHome">
+        <div class="titleHeader">
+            <h1>Eric Romagna</h1>
+            <h3>Software Developer</h3>
+            <img src="img/logo.png" alt="logo">
+            <h3>Track your food. Change your habits!</h3>
+            <a data-role="button" data-icon="plus"
+               href="https://ericromagna.github.io/ericromagna.git.io/">Portfolio</a>
+            <a data-role="button" data-icon="plus"
+               href="mailto:eromagna3076@conestogac.on.ca">ericromagna.emr@gmail.com</a>
+
+        </div>
+    </section>
+    <footer data-role="footer" data-theme="b" data-position="fixed">
+        <div data-role="navbar" data-iconpos="bottom">
+            <ul>
+                <li><a href="#homePage" data-icon="home" class="ui-btn-a">Home</a></li>
+                <li><a href="#createFood" data-icon="plus" class="ui-btn-a">Create Food</a></li>
+                <li><a href="#addFood" data-icon="plus" class="ui-btn-a">Add Food </a></li>
+                <li><a href="#monthFood" data-icon="grid" class="ui-btn-a">History</a></li>
+                <li><a href="#profile" data-icon="gear" class="ui-btn-a">Profile</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
